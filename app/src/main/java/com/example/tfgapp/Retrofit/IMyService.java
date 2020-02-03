@@ -16,8 +16,8 @@ public interface IMyService {
                                     @Field("password2") String password2);
     @POST ("api/login")
     @FormUrlEncoded
-    Observable<String> loginUser(@Field("email") String email,
-                                    @Field("password") String password);
+    Observable<Integer> loginUser(@Field("email") String email,
+                                  @Field("password") String password);
 
     @GET("api/{email}")
     Observable<String> getProfile(@Path("name") String name);
