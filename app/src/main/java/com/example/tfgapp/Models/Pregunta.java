@@ -1,6 +1,8 @@
 package com.example.tfgapp.Models;
 
-public class Pregunta {
+import java.io.Serializable;
+
+public class Pregunta implements Serializable {
     private String enunciado;
     private String opcion1;
     private String opcion2;

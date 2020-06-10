@@ -1,6 +1,8 @@
 package com.example.tfgapp.Models;
 
-public class Curso {
+import java.io.Serializable;
+
+public class Curso implements Serializable {
     private String name;
     private String description;
     private String level;

@@ -100,7 +100,8 @@ public class MainActivity extends AppCompatActivity {
                         registerUser(edt_register_name.getText().toString(),
                                 edt_register_email.getText().toString(),
                                 edt_register_password.getText().toString(),
-                                edt_register_password2.getText().toString());
+                                edt_register_password2.getText().toString(),
+                                0);
 
 
                     }
@@ -115,8 +116,8 @@ public class MainActivity extends AppCompatActivity {
                 loginPassword.getText().toString());
     }
 
-    private void registerUser(String name, String email, String password, String password2) {
-        compositeDisposable.add(iMyService.registerUser(name, email, password, password2)
+    private void registerUser(String name, String email, String password, String password2,int points) {
+        compositeDisposable.add(iMyService.registerUser(name, email, password, password2,points)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
