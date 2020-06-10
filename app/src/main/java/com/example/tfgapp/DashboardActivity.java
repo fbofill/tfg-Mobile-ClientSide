@@ -82,6 +82,7 @@ public class DashboardActivity extends AppCompatActivity {
                     MyListAdapter adapter=new MyListAdapter(DashboardActivity.this,image, titulos,descripciones);
                     listViewResult.setAdapter(adapter);
 
+                    //Todo: Empezar nueva actividad con las preguntas del curso
                     listViewResult.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {

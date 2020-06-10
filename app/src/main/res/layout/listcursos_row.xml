@@ -26,6 +26,7 @@
             android:textColor="@android:color/white"
             android:textStyle="bold"
             android:layout_margin="5dp"
+            android:layout_gravity="center_vertical"
             android:textSize="20dp"
             />
         <TextView
@@ -36,6 +37,7 @@
             android:textColor="#a9a9a9"
             android:textStyle="bold"
             android:layout_margin="5dp"
+            android:layout_gravity="center_vertical"
             android:textSize="12dp"
             />
 
