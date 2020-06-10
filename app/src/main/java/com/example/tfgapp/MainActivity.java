@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.example.tfgapp.Models.User;
 import com.example.tfgapp.Retrofit.IMyService;
 import com.example.tfgapp.Retrofit.RetrofitClient;
 import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
@@ -23,6 +24,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
@@ -133,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Introduce una contraseña", Toast.LENGTH_SHORT).show();
             return;
         }
-        compositeDisposable.add(iMyService.loginUser(email,password)
+      /*  compositeDisposable.add(iMyService.loginUser(email,password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Integer>() {
@@ -145,12 +149,32 @@ public class MainActivity extends AppCompatActivity {
                             handleResponse();
                         }
                     }
-                }));
+                }));*/
+
+      Call<User> call=iMyService.loginUser(email,password);
+      call.enqueue(new Callback<User>() {
+          @Override
+          public void onResponse(Call<User> call, Response<User> response) {
+              if(!response.isSuccessful()){
+                  Toast.makeText(MainActivity.this, "Error code "+response.code() , Toast.LENGTH_SHORT).show();
+              }else{
+                  User user=response.body();
+                  handleResponse(user);
+
+              }
+
+          }
+          @Override
+          public void onFailure(Call<User> call, Throwable t) {
+              Toast.makeText(MainActivity.this, "Error en la respuesta del servidor" + t.getMessage(), Toast.LENGTH_SHORT).show();
+          }
+      });
     }
 
-    public void handleResponse(){
+    public void handleResponse(User user){
         Toast.makeText(MainActivity.this, "BIENVENIDO", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, DashboardActivity.class);
+        intent.putExtra("user", user);
         startActivity(intent);
     }
 

@@ -1,6 +1,7 @@
 package com.example.tfgapp.Retrofit;
 
 import com.example.tfgapp.Models.Curso;
+import com.example.tfgapp.Models.User;
 
 import java.util.List;
 
@@ -21,8 +22,8 @@ public interface IMyService {
                                     @Field("password2") String password2);
     @POST ("api/login")
     @FormUrlEncoded
-    Observable<Integer> loginUser(@Field("email") String email,
-                                  @Field("password") String password);
+    Call<User> loginUser(@Field("email") String email,
+                               @Field("password") String password);
 
     @GET("api/{email}")
     Observable<String> getProfile(@Path("name") String name);

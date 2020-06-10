@@ -2,9 +2,11 @@ package com.example.tfgapp.Models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class User {
+import java.io.Serializable;
 
-    @SerializedName("_id")
+public class User implements Serializable {
+
+    //@SerializedName("_id")
     private int id;
 
     private String name;

@@ -41,14 +41,20 @@
         android:layout_width="match_parent"
         android:layout_height="360dp">
 
-        <TextView
+        <!--TextView
             android:id="@+id/txt_cursos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@android:color/white"
-            android:textStyle="bold" />
+            android:textStyle="bold" /-->
+        <ListView
+            android:id="@+id/lv_cursos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
 
     </androidx.core.widget.NestedScrollView>
 
