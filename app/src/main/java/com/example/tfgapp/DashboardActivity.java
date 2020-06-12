@@ -40,7 +40,6 @@ public class DashboardActivity extends AppCompatActivity {
 
 
         //Activity elements
-        int image=R.drawable.course_icon;
         btn_logout =  findViewById(R.id.btn_logout);
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,14 +78,13 @@ public class DashboardActivity extends AppCompatActivity {
                         descripciones.add(curso.getDescription());
 
                     }
-                    MyListAdapter adapter=new MyListAdapter(DashboardActivity.this,image, titulos,descripciones);
+                    MyListAdapter adapter=new MyListAdapter(DashboardActivity.this, titulos,descripciones);
                     listViewResult.setAdapter(adapter);
 
 
                     listViewResult.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                            Toast.makeText(DashboardActivity.this, "Has pulsado: "+ titulos.get(position), Toast.LENGTH_LONG).show();
 
                             Intent intent = new Intent(DashboardActivity.this, QuizActivity.class);
                             intent.putExtra("curso", titulos.get(position));

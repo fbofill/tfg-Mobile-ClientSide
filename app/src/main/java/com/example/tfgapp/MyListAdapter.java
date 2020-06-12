@@ -17,13 +17,13 @@ public class MyListAdapter extends BaseAdapter {
     private final Context context;
     private final ArrayList<String> title;
     private final ArrayList<String> description;
-    private final Integer image;
+    //private final Integer image;
 
-    public MyListAdapter(Activity context, Integer image, ArrayList<String> titulos,ArrayList<String> descripcion) {
+    public MyListAdapter(Activity context, ArrayList<String> titulos,ArrayList<String> descripcion) {
         this.context = context;
         this.title = titulos;
         this.description=descripcion;
-        this.image = image;
+        //this.image = image;
 
     }
 

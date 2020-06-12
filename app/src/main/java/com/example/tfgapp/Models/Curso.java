@@ -8,9 +8,7 @@ public class Curso implements Serializable {
     private String level;
     //Pregunta pregunta[];
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
     public String getDescription() {
         return description;

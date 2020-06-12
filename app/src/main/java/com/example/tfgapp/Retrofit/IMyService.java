@@ -35,5 +35,6 @@ public interface IMyService {
     Call<List<Curso>> getCurso();
 
     @POST("api/getPreguntas")
+    @FormUrlEncoded
     Call<List<Pregunta>> getPregunta(@Field("name")String name);
 }
