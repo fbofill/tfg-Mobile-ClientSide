@@ -30,7 +30,7 @@ import retrofit2.Retrofit;
 
 public class QuizActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button btn_logout,btn_check;
+    Button btn_next,btn_check;
     RadioGroup radioGroup;
     RadioButton one,two,three,four;
     TextView txt_pregunta;
@@ -40,6 +40,8 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private int pos;
     String respCorrecta;
     int numPreguntas;
+    List<Pregunta> pregunta;
+    int puntos;
 
 
 
@@ -66,6 +68,8 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         three.setOnClickListener(this);
         four=findViewById(R.id.rad_cuatro);
         four.setOnClickListener(this);
+        btn_next=findViewById(R.id.btn_next);
+        btn_next.setOnClickListener(this);
 
         //Init Service
         Retrofit retrofitClient = RetrofitClient.getInstance();
@@ -73,8 +77,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
         Call<List<Pregunta>> call= iMyService.getPregunta(curso);
 
-        Random random;
-        Pregunta currentPreg;
 
         call.enqueue(new Callback<List<Pregunta>>() {
             @Override
@@ -82,12 +84,14 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 if(!response.isSuccessful()){
                     Toast.makeText(QuizActivity.this, "Error: "+ response.code(), Toast.LENGTH_LONG).show();
                 }else {
-                    List<Pregunta> pregunta=response.body();
+                    pregunta=response.body();
                     pos=0;
 
                     Pregunta currentPreg;
+                    puntos=0;
                     numPreguntas=pregunta.size();
                     Collections.shuffle(pregunta);
+
                     currentPreg=pregunta.get(pos);
                     respCorrecta=currentPreg.getOpcion1();
                     txt_pregunta.setText(currentPreg.getEnunciado());
@@ -104,6 +108,8 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
+
+
     void desordenar_preguntas(Pregunta preg, RadioButton one,RadioButton two,RadioButton three,RadioButton four){
         List<Integer> orden= new ArrayList<Integer>();
         for (int i=0;i<4;i++){
@@ -145,71 +151,104 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    void desabilita_botones(){
+        one.setEnabled(false);
+        two.setEnabled(false);
+        three.setEnabled(false);
+        four.setEnabled(false);
+    }
+
+    void habilitar_botones(){
+        one.setEnabled(true);
+        two.setEnabled(true);
+        three.setEnabled(true);
+        four.setEnabled(true);
+        one.setChecked(false);
+        two.setChecked(false);
+        three.setChecked(false);
+        four.setChecked(false);
+    }
+
 
     @Override
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.rad_uno:
                 if(one.getText()==respCorrecta){
-                    one.setEnabled(false);
-                    two.setEnabled(false);
-                    three.setEnabled(false);
-                    four.setEnabled(false);
+                    desabilita_botones();
+                    puntos+=1;
                     Toast.makeText(QuizActivity.this, "ACIERTO", Toast.LENGTH_SHORT).show();
                 }else{
-                    one.setEnabled(false);
-                    two.setEnabled(false);
-                    three.setEnabled(false);
-                    four.setEnabled(false);
+                    desabilita_botones();;
                     Toast.makeText(QuizActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.rad_dos:
                 if(two.getText()==respCorrecta){
-                one.setEnabled(false);
-                two.setEnabled(false);
-                three.setEnabled(false);
-                four.setEnabled(false);
+                    desabilita_botones();
+                    puntos+=1;
                     Toast.makeText(QuizActivity.this, "ACIERTO", Toast.LENGTH_SHORT).show();
             }else{
-                    one.setEnabled(false);
-                    two.setEnabled(false);
-                    three.setEnabled(false);
-                    four.setEnabled(false);
+                    desabilita_botones();
                     Toast.makeText(QuizActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.rad_tres:
                 if(three.getText()==respCorrecta){
-                    one.setEnabled(false);
-                    two.setEnabled(false);
-                    three.setEnabled(false);
-                    four.setEnabled(false);
+                    desabilita_botones();
+                    puntos+=1;
                     Toast.makeText(QuizActivity.this, "ACIERTO", Toast.LENGTH_SHORT).show();
                 }else{
-                    one.setEnabled(false);
-                    two.setEnabled(false);
-                    three.setEnabled(false);
-                    four.setEnabled(false);
+                    desabilita_botones();
                     Toast.makeText(QuizActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.rad_cuatro:
                 if(four.getText()==respCorrecta){
-                    one.setEnabled(false);
-                    two.setEnabled(false);
-                    three.setEnabled(false);
-                    four.setEnabled(false);
+                    desabilita_botones();
+                    puntos+=1;
                     Toast.makeText(QuizActivity.this, "ACIERTO", Toast.LENGTH_SHORT).show();
                 }else{
-                    one.setEnabled(false);
-                    two.setEnabled(false);
-                    three.setEnabled(false);
-                    four.setEnabled(false);
+                    desabilita_botones();
+                    puntos+=1;
                     Toast.makeText(QuizActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.btn_next:
+                Toast.makeText(QuizActivity.this, "NEXT", Toast.LENGTH_SHORT).show();
+                if (pos+1<numPreguntas && pos+1<10){
+                    pos+=1;
+                    siguientePregunta();
+                }else{
+                    gameOver();
                 }
                 break;
         }
 
     }
+
+    void siguientePregunta(){
+        Pregunta currentPreg;
+        currentPreg=pregunta.get(pos);
+        respCorrecta=currentPreg.getOpcion1();
+        txt_pregunta.setText(currentPreg.getEnunciado());
+
+
+        respCorrecta=currentPreg.getOpcion1();
+        txt_pregunta.setText(currentPreg.getEnunciado());
+        desordenar_preguntas(currentPreg,one,two,three,four);
+        habilitar_botones();
+
+
+
+
+    }
+    void gameOver(){
+        Intent intent = new Intent(QuizActivity.this, QuizEndActivity.class);
+        intent.putExtra("curso",curso);
+        intent.putExtra("user", user);
+        startActivity(intent);
+
+    }
+
 }

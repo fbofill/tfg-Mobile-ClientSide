@@ -30,9 +30,9 @@
             android:id="@+id/txt_pregunta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             android:text="PREGUNTAS"
-            android:textSize="12dp"
+            android:textSize="16dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
@@ -54,41 +54,42 @@
             android:id="@+id/rad_uno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp" />
+            android:textColor="@android:color/white"
+            android:buttonTint="@android:color/white"
+            android:textSize="12dp"
+            android:layout_margin="5dp" />
 
         <androidx.appcompat.widget.AppCompatRadioButton
             android:id="@+id/rad_dos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp" />
+            android:textColor="@android:color/white"
+            android:buttonTint="@android:color/white"
+            android:textSize="12dp"
+            android:layout_margin="5dp" />
 
         <androidx.appcompat.widget.AppCompatRadioButton
             android:id="@+id/rad_tres"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp" />
+            android:textColor="@android:color/white"
+            android:buttonTint="@android:color/white"
+            android:textSize="12dp"
+            android:layout_margin="5dp" />
 
         <androidx.appcompat.widget.AppCompatRadioButton
             android:id="@+id/rad_cuatro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp" />
+            android:textColor="@android:color/white"
+            android:buttonTint="@android:color/white"
+            android:textSize="12dp"
+            android:layout_margin="5dp" />
         </RadioGroup>
 
 
     </LinearLayout>
 
-
-    <Button
-        android:id="@+id/btn_check"
-        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="#DF691A"
-        android:text="COMPRUEBA"
-        android:textColor="@android:color/white"
-        android:textSize="20sp" />
     <Button
         android:id="@+id/btn_next"
         style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
