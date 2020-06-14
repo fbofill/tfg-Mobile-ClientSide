@@ -60,7 +60,7 @@ public class DashboardActivity extends AppCompatActivity {
         Retrofit retrofitClient = RetrofitClient.getInstance();
         iMyService = retrofitClient.create(IMyService.class);
 
-       Call<List<Curso>> call= iMyService.getCurso();
+       Call<List<Curso>> call= iMyService.getCurso(user.getId());
 
         ArrayList<String> titulos= new ArrayList<String>();
         ArrayList<String> descripciones= new ArrayList<String>();

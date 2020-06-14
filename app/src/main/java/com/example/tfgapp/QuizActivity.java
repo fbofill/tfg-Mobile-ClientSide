@@ -2,6 +2,7 @@ package com.example.tfgapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -176,7 +177,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.rad_uno:
                 if(one.getText()==respCorrecta){
                     desabilita_botones();
-                    puntos+=1;
+                    puntos++;
                     Toast.makeText(QuizActivity.this, "ACIERTO", Toast.LENGTH_SHORT).show();
                 }else{
                     desabilita_botones();;
@@ -186,7 +187,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.rad_dos:
                 if(two.getText()==respCorrecta){
                     desabilita_botones();
-                    puntos+=1;
+                    puntos++;
                     Toast.makeText(QuizActivity.this, "ACIERTO", Toast.LENGTH_SHORT).show();
             }else{
                     desabilita_botones();
@@ -196,7 +197,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.rad_tres:
                 if(three.getText()==respCorrecta){
                     desabilita_botones();
-                    puntos+=1;
+                    puntos++;
                     Toast.makeText(QuizActivity.this, "ACIERTO", Toast.LENGTH_SHORT).show();
                 }else{
                     desabilita_botones();
@@ -206,11 +207,11 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.rad_cuatro:
                 if(four.getText()==respCorrecta){
                     desabilita_botones();
-                    puntos+=1;
+                    puntos++;
                     Toast.makeText(QuizActivity.this, "ACIERTO", Toast.LENGTH_SHORT).show();
                 }else{
                     desabilita_botones();
-                    puntos+=1;
+                    puntos++;
                     Toast.makeText(QuizActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
                 }
                 break;
@@ -239,14 +240,18 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         desordenar_preguntas(currentPreg,one,two,three,four);
         habilitar_botones();
 
-
-
-
     }
     void gameOver(){
+        String aux;
+        aux=String.valueOf(puntos);
+        Log.i("Puntos",aux);
+        puntos=(puntos/numPreguntas)*10;
+        aux=String.valueOf(puntos);
+        Log.i("Puntos",aux);
         Intent intent = new Intent(QuizActivity.this, QuizEndActivity.class);
         intent.putExtra("curso",curso);
         intent.putExtra("user", user);
+        intent.putExtra("points", puntos);
         startActivity(intent);
 
     }

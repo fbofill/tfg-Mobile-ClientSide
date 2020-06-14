@@ -31,10 +31,23 @@ public interface IMyService {
     Observable<String> getProfile(@Path("name") String name);
 
 
-    @GET("api/getCursos")
-    Call<List<Curso>> getCurso();
+    @POST("api/getCursos")
+    @FormUrlEncoded
+    Call<List<Curso>> getCurso(@Field("id")String id);
 
     @POST("api/getPreguntas")
     @FormUrlEncoded
     Call<List<Pregunta>> getPregunta(@Field("name")String name);
+
+
+    @POST("api/endQuiz")
+    @FormUrlEncoded
+    Call<User> endQuiz(@Field("userid")String userid,
+                       @Field("points")int points,
+                       @Field("cursoname")String cursoname
+                       );
+
+
+
+
 }

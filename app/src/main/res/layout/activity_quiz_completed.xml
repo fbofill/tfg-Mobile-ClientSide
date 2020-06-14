@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:layout_gravity="center"
     android:weightSum="4"
-    tools:context=".QuizActivity">
+    tools:context=".QuizEndActivity">
 
 
     <ImageView

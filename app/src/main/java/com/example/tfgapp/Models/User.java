@@ -6,8 +6,8 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
-    //@SerializedName("_id")
-    private int id;
+    @SerializedName("_id")
+    private String id;
 
     private String name;
 
@@ -15,7 +15,7 @@ public class User implements Serializable {
 
     private int points;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
