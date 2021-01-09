@@ -180,7 +180,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                     puntos++;
                     Toast.makeText(QuizActivity.this, "ACIERTO", Toast.LENGTH_SHORT).show();
                 }else{
-                    desabilita_botones();;
+                    desabilita_botones();
                     Toast.makeText(QuizActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
                 }
                 break;
@@ -211,7 +211,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(QuizActivity.this, "ACIERTO", Toast.LENGTH_SHORT).show();
                 }else{
                     desabilita_botones();
-                    puntos++;
                     Toast.makeText(QuizActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
                 }
                 break;
@@ -242,10 +241,14 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
     }
     void gameOver(){
-        String aux;
+        String aux,auxPreg;
         aux=String.valueOf(puntos);
+        auxPreg=String.valueOf(numPreguntas);
         Log.i("Puntos",aux);
-        puntos=(puntos/numPreguntas)*10;
+        Log.i("NumPreg",auxPreg);
+
+        puntos=(puntos*10)/numPreguntas;
+
         aux=String.valueOf(puntos);
         Log.i("Puntos",aux);
         Intent intent = new Intent(QuizActivity.this, QuizEndActivity.class);
