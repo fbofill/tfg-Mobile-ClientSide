@@ -50,28 +50,50 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@android:color/white"
             android:textStyle="bold" /-->
-
-
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:padding="5dp">
 
         <ListView
             android:id="@+id/lv_cursos"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="310dp"
             android:smoothScrollbar="true">
 
         </ListView>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+        <Button
+            android:id="@+id/btn_options"
+            style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="#DF691A"
+            android:text="Resultados"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_logout"
+            style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="#DF691A"
+            android:text="@string/close_button"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
 
 
-    <Button
-        android:id="@+id/btn_logout"
-        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="#DF691A"
-        android:text="@string/close_button"
-        android:textColor="@android:color/white"
-        android:textSize="20sp" />
 
-
+</LinearLayout>
 </LinearLayout>

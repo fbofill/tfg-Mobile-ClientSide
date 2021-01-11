@@ -1,5 +1,6 @@
 package com.example.tfgapp.Retrofit;
 
+import com.example.tfgapp.Models.Completados;
 import com.example.tfgapp.Models.Curso;
 import com.example.tfgapp.Models.Pregunta;
 import com.example.tfgapp.Models.User;
@@ -34,6 +35,13 @@ public interface IMyService {
     @POST("api/getCursos")
     @FormUrlEncoded
     Call<List<Curso>> getCurso(@Field("id")String id);
+
+    @POST("api/getCursosCompletado")
+    @FormUrlEncoded
+    Call<List<Completados>> getCursoCompletado(@Field("name")String name);
+
+
+
 
     @POST("api/getPreguntas")
     @FormUrlEncoded

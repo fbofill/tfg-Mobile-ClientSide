@@ -4,13 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.tfgapp.Models.Curso;
 import com.example.tfgapp.Models.User;
@@ -28,6 +26,7 @@ import retrofit2.Call;
 public class DashboardActivity extends AppCompatActivity {
 
     Button btn_logout;
+    Button btn_options;
     TextView textViewResult,txtUsername;
     IMyService iMyService;
     User user;
@@ -41,10 +40,19 @@ public class DashboardActivity extends AppCompatActivity {
 
         //Activity elements
         btn_logout =  findViewById(R.id.btn_logout);
+        btn_options =  findViewById(R.id.btn_options);
+
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 logout();
+            }
+        });
+
+        btn_options.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+             options();
             }
         });
 
@@ -102,13 +110,17 @@ public class DashboardActivity extends AppCompatActivity {
         });
 
 
-
-
     }
 
     public void logout(){
         Intent intent = new Intent(this, MainActivity.class);
         btn_logout =  findViewById(R.id.btn_logout);
+        startActivity(intent);
+    }
+
+    public void options(){
+        Intent intent = new Intent(DashboardActivity.this, OptionActivity.class);
+        intent.putExtra("user", user);
         startActivity(intent);
     }
 }
