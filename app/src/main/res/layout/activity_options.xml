@@ -11,10 +11,10 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="99dp"
+        android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:orientation="horizontal"
-        android:padding="16dp"
+        android:padding="5dp"
         android:weightSum="1">
 
         <TextView
@@ -27,50 +27,101 @@
             android:textColor="@android:color/white"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/txt_points"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:gravity="center"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/white"
-            android:textStyle="bold" />
 
 
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/lv_cursos"
-        android:layout_width="match_parent"
-        android:layout_height="465dp"
-        android:smoothScrollbar="true">
-
-    </ListView>
-
-    <!--Button
-        android:id="@+id/btn_delete"
-        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="323dp"
         android:layout_margin="16dp"
-        android:background="#DF691A"
-        android:text="Eliminar cuenta"
-        android:textColor="@android:color/white"
-        android:textSize="20sp" /-->
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:weightSum="1">
 
-    <Button
-        android:id="@+id/btn_dashboard"
-        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        <EditText
+            android:id="@+id/edt_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/ic_user"
+            android:drawablePadding="0dp"
+            android:hint="Nombre"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/edt_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/ic_email"
+            android:drawablePadding="0dp"
+            android:hint="Email"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/edt_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/ic_lock"
+            android:drawablePadding="0dp"
+            android:hint="Contraseña"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/edt_password2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/ic_lock"
+            android:drawablePadding="0dp"
+            android:hint="Repetir Contraseña"
+            android:inputType="textPassword" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="284dp"
         android:layout_margin="16dp"
-        android:background="#DF691A"
-        android:text="Inicio"
-        android:textColor="@android:color/white"
-        android:textSize="20sp" />
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:weightSum="1">
 
+        <Button
+            android:id="@+id/btn_edit"
+            style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="#DF691A"
+            android:text="Editar Cuenta"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_delete"
+            style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="#DF691A"
+            android:text="Eliminar cuenta"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_dashboard"
+            style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="#DF691A"
+            android:text="Inicio"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+
+    </LinearLayout>
 
 
 </LinearLayout>

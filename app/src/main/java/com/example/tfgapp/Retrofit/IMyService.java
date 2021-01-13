@@ -1,5 +1,7 @@
 package com.example.tfgapp.Retrofit;
 
+import android.content.Intent;
+
 import com.example.tfgapp.Models.Completados;
 import com.example.tfgapp.Models.Curso;
 import com.example.tfgapp.Models.Pregunta;
@@ -54,6 +56,18 @@ public interface IMyService {
                        @Field("points")int points,
                        @Field("cursoname")String cursoname
                        );
+
+    @POST ("api/deleteUser")
+    @FormUrlEncoded
+    Call<String> deleteUser(@Field("id") String userid);
+
+    @POST("api/editUser")
+    @FormUrlEncoded
+    Call<User> editUser(@Field("id") String id,
+                       @Field("name") String name,
+                       @Field("email") String email,
+                       @Field("password") String password,
+                       @Field("password2") String password2);
 
 
 

@@ -138,26 +138,13 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Introduce una contraseña", Toast.LENGTH_SHORT).show();
             return;
         }
-      /*  compositeDisposable.add(iMyService.loginUser(email,password)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Integer>() {
-                    @Override
-                    public void accept(Integer response) throws Exception {
-                        if(response<0){
-                            Toast.makeText(MainActivity.this, "Email o contraseña incorrectos", Toast.LENGTH_SHORT).show();
-                        }else if (response == 1){
-                            handleResponse();
-                        }
-                    }
-                }));*/
 
       Call<User> call=iMyService.loginUser(email,password);
       call.enqueue(new Callback<User>() {
           @Override
           public void onResponse(Call<User> call, Response<User> response) {
               if(!response.isSuccessful()){
-                  Toast.makeText(MainActivity.this, "Error code "+response.code() , Toast.LENGTH_SHORT).show();
+                  Toast.makeText(MainActivity.this, "Error: "+ response.message() , Toast.LENGTH_SHORT).show();
               }else{
                   User user=response.body();
                   handleResponse(user);

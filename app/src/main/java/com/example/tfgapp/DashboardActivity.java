@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -26,7 +27,8 @@ import retrofit2.Call;
 public class DashboardActivity extends AppCompatActivity {
 
     Button btn_logout;
-    Button btn_options;
+    Button btn_results;
+    ImageButton btn_settings;
     TextView textViewResult,txtUsername;
     IMyService iMyService;
     User user;
@@ -40,7 +42,8 @@ public class DashboardActivity extends AppCompatActivity {
 
         //Activity elements
         btn_logout =  findViewById(R.id.btn_logout);
-        btn_options =  findViewById(R.id.btn_options);
+        btn_results =  findViewById(R.id.btn_results);
+        btn_settings =  findViewById(R.id.btn_opt);
 
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,10 +52,17 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
 
-        btn_options.setOnClickListener(new View.OnClickListener() {
+        btn_results.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             options();
+             results();
+            }
+        });
+
+        btn_settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                options();
             }
         });
 
@@ -115,6 +125,12 @@ public class DashboardActivity extends AppCompatActivity {
     public void logout(){
         Intent intent = new Intent(this, MainActivity.class);
         btn_logout =  findViewById(R.id.btn_logout);
+        startActivity(intent);
+    }
+
+    public void results(){
+        Intent intent = new Intent(DashboardActivity.this, ResultsActivity.class);
+        intent.putExtra("user", user);
         startActivity(intent);
     }
 

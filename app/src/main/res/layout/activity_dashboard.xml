@@ -13,46 +13,63 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="horizontal"
+        android:padding="5dp">
 
-        <TextView
-            android:id="@+id/txt_welcome"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:text="Bienvenido"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/white"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txt_name"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="245dp"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/white"
-            android:textStyle="bold" />
+            android:layout_margin="16dp"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/txt_welcome"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:text="Bienvenido"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <ImageButton
+                android:id="@+id/btn_opt"
+                style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#DF691A"
+                android:src="@drawable/ic_settings_"
+                android:textColor="@android:color/white"
+                android:textSize="20sp">
+
+            </ImageButton>
+        </LinearLayout>
+
 
     </LinearLayout>
 
-    <!--androidx.core.widget.NestedScrollView
-</androidx.core.widget.NestedScrollView-->
-        android:layout_width="match_parent"
-        android:layout_height="360dp">
-
-        <!--TextView
-            android:id="@+id/txt_cursos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/white"
-            android:textStyle="bold" /-->
     <LinearLayout android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:orientation="vertical"
         android:padding="5dp">
 
@@ -65,19 +82,21 @@
         </ListView>
     </LinearLayout>
 
-    <LinearLayout android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    android:orientation="vertical"
-    android:padding="5dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="173dp"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:padding="5dp">
 
         <Button
-            android:id="@+id/btn_options"
+            android:id="@+id/btn_results"
             style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_margin="10dp"
             android:background="#DF691A"
+            android:drawableLeft="@drawable/ic_format_list"
             android:text="Resultados"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
@@ -87,13 +106,13 @@
             style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_margin="10dp"
             android:background="#DF691A"
+            android:drawableLeft="@drawable/ic_close"
             android:text="@string/close_button"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
 
 
-
-</LinearLayout>
+    </LinearLayout>
 </LinearLayout>

@@ -4,20 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListView;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.tfgapp.Models.Completados;
 import com.example.tfgapp.Models.User;
 import com.example.tfgapp.Retrofit.IMyService;
 import com.example.tfgapp.Retrofit.RetrofitClient;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,13 +21,11 @@ import retrofit2.Retrofit;
 
 public class OptionActivity extends AppCompatActivity {
     User user;
-    Button btn_dashboard;
     IMyService iMyService;
-    ListView listViewResult;
-    TextView txtUsername,txtPoints;
+    Button btn_dashboard,btn_edit,btn_delete;
+    TextView txtUsername;
+    EditText edt_name,edt_email,edt_password,edt_password2;
     TextView textViewResult;
-
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,10 +33,21 @@ public class OptionActivity extends AppCompatActivity {
 
         Intent intent=getIntent();
         user=(User)intent.getSerializableExtra("user");
-        String info=String.valueOf(user.getPoints());
-        Log.i("INFO",info);
 
         btn_dashboard =  findViewById(R.id.btn_dashboard);
+        btn_edit =  findViewById(R.id.btn_edit);
+        btn_delete =  findViewById(R.id.btn_delete);
+        txtUsername=findViewById(R.id.txt_name);
+        edt_name=findViewById(R.id.edt_name);
+        edt_email=findViewById(R.id.edt_email);
+        edt_password=findViewById(R.id.edt_password);
+        edt_password2=findViewById(R.id.edt_password2);
+
+
+
+        txtUsername.setText(user.getName());
+        edt_name.setText(user.getName());
+        edt_email.setText(user.getEmail());
 
         //Init Service
         Retrofit retrofitClient = RetrofitClient.getInstance();
@@ -52,54 +56,69 @@ public class OptionActivity extends AppCompatActivity {
         btn_dashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dashboard();
+                dashboard(user);
             }
         });
-        listViewResult=(ListView)findViewById(R.id.lv_cursos);
 
-        txtUsername=findViewById(R.id.txt_name);
-        txtUsername.setText(user.getName());
-
-        txtPoints=findViewById(R.id.txt_points);
-        txtPoints.setText(String.valueOf(user.getPoints()));
-
-        Call<List<Completados>> call= iMyService.getCursoCompletado(user.getName());
-
-        ArrayList<String> nombreCurso= new ArrayList<String>();
-        ArrayList<String> scoreCurso= new ArrayList<String>();
-
-
-        call.enqueue(new Callback<List<Completados>>() {
+        btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(Call<List<Completados>> call, Response<List<Completados>> response) {
-                if(!response.isSuccessful()){
-                    textViewResult.setText("CODE: "+ response.code());
+            public void onClick(View v) {
+                String name=edt_name.getText().toString();
+                String email=edt_email.getText().toString();
+                String password=edt_password.getText().toString();
+                String password2=edt_password2.getText().toString();
+
+                Call<User> call= iMyService.editUser(user.getId(),name,email,password,password2);
+
+                if(!password.equals(password2)){
+                    textViewResult.setText(("Las contraseñas no coinciden"));
                 }else{
-                    List<Completados> completado=response.body();
+                    call.enqueue(new Callback<User>() {
+                        @Override
+                        public void onResponse(Call<User> call, Response<User> response) {
+                            if(!response.isSuccessful()){
+                                textViewResult.setText("CODE: "+ response.code());
+                            }else{
+                                User newuser=response.body();
+                                dashboard(newuser);
+                            }
+                        }
+                        @Override
+                        public void onFailure(Call<User> call, Throwable t) {
+                            textViewResult.setText((t.getMessage()));
 
-                    for(Completados completados:completado){
-                        nombreCurso.add(completados.getCurso());
-                        scoreCurso.add(String.valueOf(completados.getScore()));
-
-                    }
-                    MyListAdapter adapter=new MyListAdapter(OptionActivity.this, nombreCurso,scoreCurso);
-                    listViewResult.setAdapter(adapter);
+                        }
+                    });
 
                 }
-            }
-            @Override
-            public void onFailure(Call<List<Completados>> call, Throwable t) {
-                textViewResult.setText((t.getMessage()));
+
 
             }
         });
+
+        btn_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                disclaimer();
+            }
+        });
+
+
 
     }
 
-    public void dashboard(){
+    public void dashboard(User user){
         Intent intent = new Intent(this, DashboardActivity.class);
         intent.putExtra("user", user);
         startActivity(intent);
     }
 
+    public void disclaimer(){
+        Intent intent = new Intent(this, DisclaimerActivity.class);
+        intent.putExtra("user", user);
+        startActivity(intent);
+    }
+
+
 }
+
