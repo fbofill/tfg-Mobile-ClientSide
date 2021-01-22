@@ -215,7 +215,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.btn_next:
-                Toast.makeText(QuizActivity.this, "NEXT", Toast.LENGTH_SHORT).show();
                 if (pos+1<numPreguntas && pos+1<10){
                     pos+=1;
                     siguientePregunta();
